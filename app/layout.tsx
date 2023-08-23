@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -12,10 +12,10 @@ const store = configureStore({ reducer: rootReducer, devTools: true });
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "SquadDeck",
-  description: "Created by NETMOW",
-};
+// export const metadata: Metadata = {
+//   title: "SquadDeck",
+//   description: "Created by NETMOW",
+// };
 
 export default function RootLayout({
   children,
