@@ -1,0 +1,183 @@
+//
+// _card.scss
+//
+.card {
+  --vz-card-spacer-y: 1rem;
+  --vz-card-spacer-x: 1rem;
+  --vz-card-title-spacer-y: 0.5rem;
+  --vz-card-border-width: 0;
+  --vz-card-border-color: rgba(0, 0, 0, 0.125);
+  --vz-card-border-radius: 0.25rem;
+  --vz-card-box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15);
+  --vz-card-inner-border-radius: 0.25rem;
+  --vz-card-cap-padding-y: 1rem;
+  --vz-card-cap-padding-x: 1rem;
+  --vz-card-cap-bg: #fff;
+  --vz-card-bg: #fff;
+  --vz-card-img-overlay-padding: 1rem;
+  --vz-card-group-margin: 0.75rem;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--vz-card-height);
+  word-wrap: break-word;
+  background-color: var(--vz-card-bg);
+  background-clip: border-box;
+  border: var(--vz-card-border-width) solid var(--vz-card-border-color);
+  border-radius: var(--vz-card-border-radius);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15);
+}
+
+.card-header {
+  border-bottom: 1px solid var(--#{$prefix}border-color);
+}
+
+//Card Header Dropdown
+.card-header-dropdown {
+  .dropdown-btn {
+    padding: $card-cap-padding-y 0;
+  }
+}
+
+.card-footer {
+  border-top: 1px solid var(--#{$prefix}border-color);
+}
+
+.card-title {
+  font-size: 16px;
+  margin: 0 0 7px 0;
+}
+
+.card-height-100 {
+  height: calc(100% - #{$grid-gutter-width});
+}
+
+.card-animate {
+  transition: all 0.4s;
+
+  &:hover {
+    transform: translateY(calc(#{-$grid-gutter-width} / 5));
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+// card color variant
+
+@each $color, $value in $theme-colors {
+  .card-#{$color} {
+    background-color: $value;
+    color: color-contrast($value);
+
+    .card-header,
+    .card-footer {
+      background-color: rgba($white, 0.1);
+      color: color-contrast($value);
+      border-color: transparent;
+    }
+
+    .card-title {
+      color: color-contrast($value);
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .card-border-#{$color} {
+    border-color: $value !important;
+    .card-header,
+    .card-footer {
+      border-color: $value;
+    }
+  }
+}
+
+.card-light {
+  background-color: var(--#{$prefix}light);
+  .card-header,
+  .card-footer {
+    color: var(--#{$prefix}body-color) !important;
+    background-color: rgba(var(--#{$prefix}dark-rgb), 0.1);
+  }
+  .card-title,
+  .card-text {
+    color: var(--#{$prefix}body-color) !important;
+  }
+}
+
+// Loader
+
+.card-preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--#{$prefix}light-rgb), 0.6);
+  z-index: 9999;
+}
+
+.card-status {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) !important;
+}
+
+.custom-loader {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card-overlay {
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    background-color: rgba($primary, 0.2);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+  :is(.card-header, .card-footer) {
+    border-color: rgba($white, 0.15) !important;
+  }
+}
+
+.card-toolbar-menu {
+  line-height: 0.8;
+  a {
+    font-size: 17px;
+  }
+  .minimize-card {
+    .plus {
+      display: none;
+    }
+    .minus {
+      display: block;
+    }
+    &.collapsed {
+      .plus {
+        display: block;
+      }
+      .minus {
+        display: none;
+      }
+    }
+  }
+}
